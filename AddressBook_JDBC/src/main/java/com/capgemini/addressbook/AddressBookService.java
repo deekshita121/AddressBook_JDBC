@@ -1,5 +1,6 @@
 package com.capgemini.addressbook;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,5 +46,10 @@ public class AddressBookService {
 		result = getContactByName(contactList, firstName, lastName).equals(contactFromDb);
 		System.out.println(getContactByName(contactList, firstName, lastName));
 		return result;
+	}
+	
+	public List<Contact> getContactsByDate(LocalDate startDate, LocalDate endDate) throws DatabaseException {
+		System.out.println(startDate +" "+ endDate);
+		return addressBookDBService.getContactsByDate(startDate, endDate);
 	}
 }

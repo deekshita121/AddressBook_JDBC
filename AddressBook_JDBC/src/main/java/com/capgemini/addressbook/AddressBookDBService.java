@@ -1,10 +1,12 @@
 package com.capgemini.addressbook;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +30,10 @@ public class AddressBookDBService {
 
 	public List<Contact> readDataDB() throws DatabaseException {
 		String sqlQuery = "SELECT * FROM contact;";
-		return exceutesqlQuery(sqlQuery);
+		return executeSqlQuery(sqlQuery);
 	}
 
-	private List<Contact> exceutesqlQuery(String sqlQuery) throws DatabaseException {
+	private List<Contact> executeSqlQuery(String sqlQuery) throws DatabaseException {
 		List<Contact> contactList = new ArrayList<>();
 		try (Connection connection = DBConnection.getConnection()) {
 			Statement statement = connection.createStatement();
@@ -96,6 +98,12 @@ public class AddressBookDBService {
 		} catch (SQLException e) {
 			throw new DatabaseException("Unable to execute query!!", exceptionType.EXECUTE_QUERY);
 		}
+	}
+
+	public List<Contact> getContactsByDate(LocalDate startDate, LocalDate endDate) throws DatabaseException {
+		String sqlQuery = String.format("SELECT * FROM contact WHERE startDate BETWEEN '%s' AND '%s';",
+				Date.valueOf(startDate), Date.valueOf(endDate));
+		return executeSqlQuery(sqlQuery);
 	}
 
 }

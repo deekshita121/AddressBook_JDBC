@@ -1,5 +1,6 @@
 package com.capgemini.addressbook;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.Assert;
@@ -28,5 +29,11 @@ public class AddressBookServiceTest {
 		addressBookService.updateData("Divya", "Prakash", "9876543210");
 		result = addressBookService.checkContactsInsyncWithDatabase("Divya", "Prakash");
 		Assert.assertTrue(result);
+	}
+
+	@Test
+	public void gievnDateRangeWhenRetrievedSouldMatchContactsCount() throws DatabaseException {
+		contactList = addressBookService.getContactsByDate(LocalDate.of(2018, 01, 03), LocalDate.now());
+		Assert.assertEquals(3, contactList.size());
 	}
 }

@@ -11,6 +11,7 @@ public class Contact {
 	private int zip;
 	private String phoneNumber;
 	private String email;
+	private String startDate;
 
 	// Constructor
 	public Contact(String firstName, String lastName, String address, String city, String state, int zip,
