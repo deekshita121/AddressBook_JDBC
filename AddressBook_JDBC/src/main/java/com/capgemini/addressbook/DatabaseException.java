@@ -1,6 +1,6 @@
 package com.capgemini.addressbook;
 
-public class DatabaseException extends Exception{
+public class DatabaseException extends Exception {
 
 	public enum exceptionType {
 
