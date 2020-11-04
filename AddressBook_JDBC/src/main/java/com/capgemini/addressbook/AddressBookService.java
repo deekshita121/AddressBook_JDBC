@@ -3,6 +3,7 @@ package com.capgemini.addressbook;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class AddressBookService {
 
@@ -51,5 +52,9 @@ public class AddressBookService {
 	public List<Contact> getContactsByDate(LocalDate startDate, LocalDate endDate) throws DatabaseException {
 		System.out.println(startDate +" "+ endDate);
 		return addressBookDBService.getContactsByDate(startDate, endDate);
+	}
+	
+	public Map<String,Integer> getContactsCountByState() throws DatabaseException {
+		return addressBookDBService.getContactsCountByStateDB();
 	}
 }

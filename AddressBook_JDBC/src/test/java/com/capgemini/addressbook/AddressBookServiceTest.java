@@ -2,6 +2,7 @@ package com.capgemini.addressbook;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -35,5 +36,13 @@ public class AddressBookServiceTest {
 	public void gievnDateRangeWhenRetrievedSouldMatchContactsCount() throws DatabaseException {
 		contactList = addressBookService.getContactsByDate(LocalDate.of(2018, 01, 03), LocalDate.now());
 		Assert.assertEquals(3, contactList.size());
+	}
+	
+	@Test
+	public void givenCityStateWhenRetrievedShouldMatchContactsCount() throws DatabaseException {
+		Map<String,Integer> stateToCount = null;
+		stateToCount= addressBookService.getContactsCountByState();
+		Integer count = 1;
+		Assert.assertEquals(count, stateToCount.get("Maharashtra"));
 	}
 }

@@ -8,7 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.capgemini.addressbook.DatabaseException.exceptionType;
 
@@ -106,4 +108,20 @@ public class AddressBookDBService {
 		return executeSqlQuery(sqlQuery);
 	}
 
+	public Map<String, Integer> getContactsCountByStateDB() throws DatabaseException {
+		String sqlQuery = String.format("SELECT state, COUNT(first_name) AS count FROM contact GROUP BY state;");
+		Map<String, Integer> stateToCount = new HashMap<>();
+		try (Connection connection = DBConnection.getConnection()) {
+			Statement statement = connection.createStatement();
+			ResultSet result = statement.executeQuery(sqlQuery);
+			while (result.next()) {
+				String city = result.getString("state");
+				Integer count = result.getInt("count");
+				stateToCount.put(city, count);
+			}
+		} catch (SQLException e) {
+			throw new DatabaseException("Unable to execute query!!", exceptionType.EXECUTE_QUERY);
+		}
+		return stateToCount;
+	}
 }
