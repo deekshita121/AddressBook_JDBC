@@ -57,4 +57,8 @@ public class AddressBookService {
 	public Map<String,Integer> getContactsCountByState() throws DatabaseException {
 		return addressBookDBService.getContactsCountByStateDB();
 	}
+
+	public Map<String, Integer> getContactsCountByCity() throws DatabaseException {
+		return addressBookDBService.getContactsCountByCityDB();
+	}
 }

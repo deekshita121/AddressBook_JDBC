@@ -45,4 +45,12 @@ public class AddressBookServiceTest {
 		Integer count = 1;
 		Assert.assertEquals(count, stateToCount.get("Maharashtra"));
 	}
+	
+	@Test
+	public void givenCityWhenRetrievedShouldMatchContactsCount() throws DatabaseException {
+		Map<String,Integer> cityToCount = null;
+		cityToCount= addressBookService.getContactsCountByCity();
+		Integer count = 1;
+		Assert.assertEquals(count, cityToCount.get("Bangalore"));
+	}
 }

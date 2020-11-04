@@ -115,13 +115,30 @@ public class AddressBookDBService {
 			Statement statement = connection.createStatement();
 			ResultSet result = statement.executeQuery(sqlQuery);
 			while (result.next()) {
-				String city = result.getString("state");
+				String state = result.getString("state");
 				Integer count = result.getInt("count");
-				stateToCount.put(city, count);
+				stateToCount.put(state, count);
 			}
 		} catch (SQLException e) {
 			throw new DatabaseException("Unable to execute query!!", exceptionType.EXECUTE_QUERY);
 		}
 		return stateToCount;
+	}
+
+	public Map<String, Integer> getContactsCountByCityDB() throws DatabaseException {
+		String sqlQuery = String.format("SELECT city, COUNT(first_name) AS count FROM contact GROUP BY city;");
+		Map<String, Integer> cityToCount = new HashMap<>();
+		try (Connection connection = DBConnection.getConnection()) {
+			Statement statement = connection.createStatement();
+			ResultSet result = statement.executeQuery(sqlQuery);
+			while (result.next()) {
+				String city = result.getString("city");
+				Integer count = result.getInt("count");
+				cityToCount.put(city, count);
+			}
+		} catch (SQLException e) {
+			throw new DatabaseException("Unable to execute query!!", exceptionType.EXECUTE_QUERY);
+		}
+		return cityToCount;
 	}
 }
