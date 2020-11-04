@@ -61,4 +61,12 @@ public class AddressBookService {
 	public Map<String, Integer> getContactsCountByCity() throws DatabaseException {
 		return addressBookDBService.getContactsCountByCityDB();
 	}
+	
+	public void addNewContact(Contact contact) throws DatabaseException {
+		Contact contactData = null;
+		contactData = addressBookDBService.addNewContactDB(contact);
+		System.out.println(contactData);
+		if (contactData.getContactId() != -1)
+			contactList.add(contactData);
+	}
 }

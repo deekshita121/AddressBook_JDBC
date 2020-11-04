@@ -37,20 +37,30 @@ public class AddressBookServiceTest {
 		contactList = addressBookService.getContactsByDate(LocalDate.of(2018, 01, 03), LocalDate.now());
 		Assert.assertEquals(3, contactList.size());
 	}
-	
+
 	@Test
 	public void givenCityStateWhenRetrievedShouldMatchContactsCount() throws DatabaseException {
-		Map<String,Integer> stateToCount = null;
-		stateToCount= addressBookService.getContactsCountByState();
+		Map<String, Integer> stateToCount = null;
+		stateToCount = addressBookService.getContactsCountByState();
 		Integer count = 1;
 		Assert.assertEquals(count, stateToCount.get("Maharashtra"));
 	}
-	
+
 	@Test
 	public void givenCityWhenRetrievedShouldMatchContactsCount() throws DatabaseException {
-		Map<String,Integer> cityToCount = null;
-		cityToCount= addressBookService.getContactsCountByCity();
+		Map<String, Integer> cityToCount = null;
+		cityToCount = addressBookService.getContactsCountByCity();
 		Integer count = 1;
 		Assert.assertEquals(count, cityToCount.get("Bangalore"));
+	}
+
+	@Test
+	public void givenNewRecordWhenAddedShouldImpactAllTables() throws DatabaseException {
+		boolean result = false;
+		Contact contact = new Contact("Reena", "Dhabi", "ECIL", "Hyderabad", "Telangana", 567945, "8905434567",
+				"terisa@gmail.com", LocalDate.now(), 102, 52);
+		addressBookService.addNewContact(contact);
+		result = addressBookService.checkContactsInsyncWithDatabase("Reena", "Dhabi");
+		Assert.assertTrue(result);
 	}
 }

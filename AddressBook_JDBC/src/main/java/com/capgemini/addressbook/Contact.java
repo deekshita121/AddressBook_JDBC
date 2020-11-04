@@ -1,5 +1,7 @@
 package com.capgemini.addressbook;
 
+import java.time.LocalDate;
+
 public class Contact {
 
 	private int contactId;
@@ -11,7 +13,10 @@ public class Contact {
 	private int zip;
 	private String phoneNumber;
 	private String email;
-	private String startDate;
+	private LocalDate startDate;
+	private int addressBookId;
+	private int addressBookTypeId;
+
 
 	// Constructor
 	public Contact(String firstName, String lastName, String address, String city, String state, int zip,
@@ -30,6 +35,14 @@ public class Contact {
 			String phoneNumber, String email) {
 		this(firstName, lastName, address, city, state, zip, phoneNumber, email);
 		this.contactId = contactId;
+	}
+	
+	public Contact(String firstName, String lastName, String address, String city, String state, int zip,
+			String phoneNumber, String email, LocalDate startDate, int addressBookId, int addressBookTypeId) {
+		this(firstName, lastName,address,city, state,zip,phoneNumber,email);
+		this.startDate = startDate;
+		this.addressBookId = addressBookId;
+		this.addressBookTypeId = addressBookTypeId;
 	}
 
 	// Setters and Getters
@@ -105,6 +118,30 @@ public class Contact {
 		this.contactId = contactId;
 	}
 
+	public int getAddressBookId() {
+		return addressBookId;
+	}
+
+	public void setAddressBookId(int addressBookId) {
+		this.addressBookId = addressBookId;
+	}
+
+	public int getAddressBookTypeId() {
+		return addressBookTypeId;
+	}
+
+	public void setAddressBookTypeId(int addressBookTypeId) {
+		this.addressBookTypeId = addressBookTypeId;
+	}
+
+	public LocalDate getStartDate() {
+		return startDate;
+	}
+
+	public void setCreatedDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
+	
 	@Override
 	public String toString() {
 		return firstName + " " + lastName + " " + address + " " + city + " " + state + " " + zip + " " + phoneNumber
