@@ -9,12 +9,16 @@ import java.util.Map;
 public class AddressBookService {
 
 	private AddressBookDBService addressBookDBService;
-	private List<Contact> contactList = new ArrayList<Contact>();
+	private List<Contact> contactList;
 
 	public AddressBookService() {
 		addressBookDBService = AddressBookDBService.getInstance();
 	}
 
+	public AddressBookService(List<Contact> contactList) {
+		this.contactList = new ArrayList<>(contactList);
+	}
+	
 	public static void main(String[] args) {
 
 		// Welcome Message
@@ -103,5 +107,14 @@ public class AddressBookService {
 			}
 		}
 		
+	}
+
+	public long countEntries() {
+		return contactList.size();
+	}
+
+	public void addContact(Contact contact) {
+		contactList.add(contact);
+
 	}
 }
