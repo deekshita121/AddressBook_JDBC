@@ -52,11 +52,11 @@ public class AddressBookServiceRestAPITest {
 		Contact[] arrayOfContacts = getContactList();
 		addressBookService = new AddressBookService(Arrays.asList(arrayOfContacts));
 		List<Contact> contactList = new ArrayList<>();
-		contactList.add(new Contact(0, "Terisa", "Mark", "Kukatpally", "Hyderabad", "Telangana", 567894, "8976111277",
+		contactList.add(new Contact(0, "Tania", "Mersel", "Kukatpally", "Hyderabad", "Telangana", 567894, "8976111277",
 				"joey@gmail.com"));
-		contactList.add(new Contact(0, "Phoebe", "Buffay", "K.T.Colony", "Bangalore", "Karnataka", 897654, "9955553277",
+		contactList.add(new Contact(0, "Mrudula", "Ayyingar", "K.T.Colony", "Bangalore", "Karnataka", 897654, "9955553277",
 				"phoebe@gmail.com"));
-		contactList.add(new Contact(0, "Monica", "Geller", "Thane", "Mumbai", "Maharashtra", 345123, "8985312356",
+		contactList.add(new Contact(0, "Monica", "Varsha", "Thane", "Mumbai", "Maharashtra", 345123, "8985312356",
 				"monica@gmail.com"));
 		for (Contact contact : contactList) {
 			Response response = addContactToJsonServer(contact);
