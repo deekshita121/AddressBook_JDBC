@@ -1,6 +1,7 @@
 package com.capgemini.addressbook;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Contact {
 
@@ -140,6 +141,11 @@ public class Contact {
 
 	public void setCreatedDate(LocalDate startDate) {
 		this.startDate = startDate;
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(contactId,firstName,lastName);
 	}
 	
 	@Override

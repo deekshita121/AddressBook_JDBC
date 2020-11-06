@@ -155,7 +155,7 @@ public class AddressBookDBService {
 		}
 		try (Statement statement = connection.createStatement()) {
 			String sql = String.format(
-					"INSERT INTO contact (first_name,last_name,address,city,state,zip,phone_number,email_id,startDate) VALUES ('%s','%s','%s','%s','%s',%d,%s,'%s','%s');",
+					"INSERT INTO contact (first_name,last_name,address,city,state,zip,phone_number,email_id) VALUES ('%s','%s','%s','%s','%s',%s,%s,'%s');",
 					contact.getFirstName(), contact.getLastName(), contact.getAddress(), contact.getCity(),
 					contact.getState(), contact.getZip(), contact.getPhoneNumber(), contact.getEmail(),
 					contact.getStartDate());
